@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "course-viewer-1": {
+      "hosting": {
+        "course-viewer": [
+          "course-viewer-1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "course-viewer-1"
+  }
+}
