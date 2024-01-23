@@ -14,6 +14,8 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { environment } from 'environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"course-viewer-1","appId":"1:599952274260:web:cbe7a834f02a781d3f8ec1","storageBucket":"course-viewer-1.appspot.com","apiKey":"AIzaSyAC9MVe5tRpWbh8FLB1PRlMOJ9KChRvAy8","authDomain":"course-viewer-1.firebaseapp.com","messagingSenderId":"599952274260"})),
+    provideFirebaseApp(() => initializeApp(environment.firebase.config)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     provideFirestore(() => getFirestore()),
