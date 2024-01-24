@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PasswordComponent } from './password.component';
 
+import { PasswordComponent } from './password.component';
 
 
 @NgModule({
@@ -10,6 +10,9 @@ import { PasswordComponent } from './password.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    PasswordComponent
   ]
 })
 export class PasswordModule { }
