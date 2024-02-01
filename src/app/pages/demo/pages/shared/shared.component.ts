@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-// import { regex, regexErrors, markFormGroupTouched } from '@app/shared/utils';
-import { regex, regexErrors } from '@app/shared/utils';
-
-// import { ControlItem } from '@app/models/frontend';
-// import { NotificationService } from '@app/services';
+import { regex, regexErrors, markFormGroupTouched } from '@app/shared/utils';
+import { ControlItem } from '@app/models/frontend';
+import { NotificationService } from '@app/services';
 
 @Component({
   selector: 'app-shared',
@@ -17,21 +15,20 @@ export class SharedComponent implements OnInit {
   isInline: boolean;
   regexErrors = regexErrors;
 
-  // items: ControlItem[];
+  items!: ControlItem[];
 
   showSpinner = false;
 
-  constructor(private fb: FormBuilder) {
-    // private notification: NotificationService
+  constructor(private fb: FormBuilder, private notification: NotificationService) {
     this.isInline = false;
 
-    // this.items = [
-    //   { label: 'First', value: 1 },
-    //   { label: 'Second', value: 2 },
-    //   { label: 'Third', value: 3 },
-    //   { label: 'Fourth', value: 4 },
-    //   { label: 'Fifth', value: 5 }
-    // ];
+    this.items = [
+      { label: 'First', value: 1 },
+      { label: 'Second', value: 2 },
+      { label: 'Third', value: 3 },
+      { label: 'Fourth', value: 4 },
+      { label: 'Fifth', value: 5 }
+    ];
   }
 
   ngOnInit(): void {
@@ -85,9 +82,9 @@ export class SharedComponent implements OnInit {
   onSubmit(): void {
     console.log('Submit!');
 
-    // if (!this.form.valid) {
-    //   markFormGroupTouched(this.form);
-    // }
+    if (!this.form.valid) {
+      markFormGroupTouched(this.form);
+    }
   }
 
   onPatchValue(): void {
@@ -123,11 +120,11 @@ export class SharedComponent implements OnInit {
   }
 
   onSuccess(): void {
-    // this.notification.success('Everything is fine!');
+    this.notification.success('Everything is fine!');
   }
 
   onError(): void {
-    // this.notification.error('Oops! Something is wrong');
+    this.notification.error('Oops! Something is wrong');
   }
 
 }

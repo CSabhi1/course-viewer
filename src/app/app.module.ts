@@ -13,9 +13,26 @@ import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { MatNativeDateModule, MatDateFormats, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+//Date
+const APP_DATE_FORMATS: MatDateFormats = {
+  parse: {
+    dateInput: { day: 'numeric', month: 'numeric', year: 'numeric' },
+  },
+  display: {
+    dateInput: { day: 'numeric', month: 'short', year: 'numeric' },
+    monthYearLabel: { year: 'numeric', month: 'short' },
+    dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+    monthYearA11yLabel: { year: 'numeric', month: 'long' }
+  }
+};
 
 import { environment } from 'environments/environment';
 import { HeaderComponent } from './components/header/header.component';
+
+//services
+import { NotificationModule } from './services';
 
 @NgModule({
   declarations: [
@@ -34,11 +51,15 @@ import { HeaderComponent } from './components/header/header.component';
     provideFunctions(() => getFunctions()),
     provideStorage(() => getStorage()),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    MatNativeDateModule,
+    NotificationModule.forRoot()
   ],
   providers: [
     ScreenTrackingService,
-    UserTrackingService
+    UserTrackingService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ],
   bootstrap: [AppComponent]
 })
